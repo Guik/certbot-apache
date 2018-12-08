@@ -2,13 +2,10 @@
 
 - name: Install certbot
   apt:
-    name: "{{ item }}"
+    name: certbot
     state: present
     update_cache: yes
     cache_valid_time: 3600
-  with_items:
-  - cerbot
 
 - name: Enable Certbot Apache
-  command: apt-get install python-certbot-apache -t stretch-backports
-
+  command: apt-get install -y python-certbot-apache -t stretch-backports

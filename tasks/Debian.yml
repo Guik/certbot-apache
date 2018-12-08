@@ -5,19 +5,11 @@
     update_cache=yes
     cache_valid_time=3600  
 
-- name: Install Repository (DEB)
+- name: Install Certbot
   package: name={{item}} state=latest
   with_items:
-    - software-properties-common
+    - cerbot
 
-- name: Enable Certbot Repository (DEB)
-  command: add-apt-repository ppa:certbot/certbot
+- name: Enable Certbot Apache
+  command: apt-get install python-certbot-apache -t stretch-backports
 
-- name: Update all packages to the latest version
-  apt:
-    upgrade: dist
-
-- name: Install certbot-apache (DEB)
-  package: name={{item}} state=latest
-  with_items:
-    - python-certbot-apache
